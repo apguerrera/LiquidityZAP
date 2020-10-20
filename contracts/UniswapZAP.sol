@@ -14,14 +14,12 @@ contract UniswapZAP {
     address public _token;
     address public _tokenWETHPair;
     IWETH public _WETH;
-    address public _uniV2Factory;
     bool private initialized;
 
-    function initUniswapZAP(address token, address WETH, address uniV2Factory, address tokenWethPair) public  {
+    function initUniswapZAP(address token, address WETH, address tokenWethPair) public  {
         require(!initialized);
         _token = token;
         _WETH = IWETH(WETH);
-        _uniV2Factory = uniV2Factory;
         _tokenWETHPair = tokenWethPair;
         initialized = true;
     }

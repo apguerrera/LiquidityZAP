@@ -6,8 +6,6 @@ from brownie import Contract
 from settings import *
 
 
-TOKEN_ADDRESS = '0x793786e2dd4cc492ed366a94b88a3ff9ba5e7546'
-TOKEN_WETH_PAIR = '0x1e0693f129d05e5857a642245185ee1fca6a5096'
 
 # reset the chain after every test case
 @pytest.fixture(autouse=True)
