@@ -17,7 +17,7 @@ contract UniswapZAP {
     address public _uniV2Factory;
     bool private initialized;
 
-    function initialize(address token, address WETH, address uniV2Factory, address tokenWethPair) public  {
+    function initUniswapZAP(address token, address WETH, address uniV2Factory, address tokenWethPair) public  {
         require(!initialized);
         _token = token;
         _WETH = IWETH(WETH);
@@ -25,8 +25,6 @@ contract UniswapZAP {
         _tokenWETHPair = tokenWethPair;
         initialized = true;
     }
-
-    event FeeApproverChanged(address indexed newAddress, address indexed oldAddress);
 
     fallback() external payable {
         if(msg.sender != address(_WETH)){

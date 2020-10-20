@@ -18,7 +18,9 @@ from settings import *
 def uniswap_zap(UniswapZAP):    
     token_owner = accounts[0]
     uniswap_zap = UniswapZAP.deploy({'from': token_owner})
-    tx = uniswap_zap.init(token_owner, {'from': token_owner})
+    # function initUniswapZAP(address token, address WETH, address uniV2Factory, address tokenWethPair) public  {
+
+    tx = uniswap_zap.initUniswapZAP(token_owner, {'from': token_owner})
     return uniswap_zap
 
 @pytest.fixture(scope='module', autouse=True)
