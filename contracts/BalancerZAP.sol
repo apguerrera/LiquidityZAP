@@ -6,6 +6,7 @@ import "../interfaces/IERC20.sol";
 import "../interfaces/IBPool.sol";
 import "../interfaces/IUniswapV2Pair.sol";
 import "./Utils/SafeMath.sol";
+import "./Utils/UniswapV2Library.sol";
 
 contract BalancerZAP {
 
@@ -21,7 +22,7 @@ contract BalancerZAP {
         require(!initialized);
         _token = token;
         _balancerPool = balancerPool;
-        require(IERC20(_token).approve(balancerPool, -1));
+        require(IERC20(_token).approve(balancerPool, uint(-1)));
         _WETH = IWETH(WETH);
         _tokenWETHPair = tokenWethPair;
         initialized = true;
@@ -73,8 +74,15 @@ contract BalancerZAP {
         require(bptTokens > 0, "Insufficient BPT amount");
     
         //transfer tokens to user
-        require(IBPool(_balancerPool).transfer(to, uint bptTokens));
+        require(IBPool(_balancerPool).transfer(to, bptTokens));
 
     }
+
+    function getPairReserves() internal view returns (uint256 wethReserves, uint256 tokenReserves) {
+        (address token0,) = UniswapV2Library.sortTokens(address(_WETH), _token);
+        (uint256 reserve0, uint reserve1,) = IUniswapV2Pair(_tokenWETHPair).getReserves();
+        (wethReserves, tokenReserves) = token0 == _token ? (reserve1, reserve0) : (reserve0, reserve1);
+    }
+
 
 }

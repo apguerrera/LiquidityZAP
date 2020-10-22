@@ -29,24 +29,22 @@ def main():
 
 
 
-# brownie run deploy_BalancerZAP.py --network mainnet      
-#                                                                                                                             ─╯
+# ╰─ brownie run deploy_BalancerZAP1.py --network mainnet                      ─╯
 # Brownie v1.11.0 - Python development framework for Ethereum
+
 # LiquidityzapProject is the active project.
 
-# Running 'scripts/deploy_BalancerZAP.py::main'...
+# Running 'scripts/deploy_BalancerZAP1.py::main'...
 # Enter the password to unlock this account:
-# Transaction sent: 0xc219944451d240a7d5f880cf49d9a619baeb6a344a510ce2ba12929d12cd9e23
-#   Gas price: 30.0 gwei   Gas limit: 935427
+# Transaction sent: 0x689500fa3a725772746ad0eff1b19266e4d0e1115cc911bad001fc964caf49bd
+#   Gas price: 66.0 gwei   Gas limit: 743090
 # Waiting for confirmation...
-#   BalancerZAP.constructor confirmed - Block: 11096018   Gas used: 935427 (100.00%)
-#   BalancerZAP deployed at: 0x2cbe8406380E784ea1a24aeEDFbf79788E2721AC
+#   BalancerZAP.constructor confirmed - Block: 11103424   Gas used: 743090 (100.00%)
+#   BalancerZAP deployed at: 0x575E0188cFC64d13107d00150dF5e495DFEDa664
 
-# Transaction sent: 0xc89eec30de8ab84fa122d255ae87656163c589927029a6eb066ccf6c35476097
-#   Gas price: 31.0 gwei   Gas limit: 85828
+# Transaction sent: 0x9e562f8f618bd673d7a1e3b2f02c17f61bafacd43fb7da4ccabab1297a785e1d
+#   Gas price: 65.0 gwei   Gas limit: 131111
 # Waiting for confirmation...
-#   BalancerZAP.initBalancerZAP confirmed - Block: 11096020   Gas used: 85828 (100.00%)
+#   BalancerZAP.initBalancerZAP confirmed - Block: 11103430   Gas used: 131111 (100.00%)
 
-# BalancerZAP contract deployed at: 0x2cbe8406380E784ea1a24aeEDFbf79788E2721AC
-
-
+# BalancerZAP contract deployed at: 0x575E0188cFC64d13107d00150dF5e495DFEDa664
