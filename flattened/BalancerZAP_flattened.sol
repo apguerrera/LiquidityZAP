@@ -403,12 +403,10 @@ contract BalancerZAP {
              addLiquidityETHOnly(msg.sender);
         }
     }
-    receive() external payable {
-        if(msg.sender != address(_WETH)){
-             addLiquidityETHOnly(msg.sender);
-        }
-    }
 
+    /**
+     * @dev Converts ETH to Balancer Pool Tokens (BPT)
+     */
     function addLiquidityETHOnly(address payable to) public payable {
         require(to != address(0), "Invalid address");
 
@@ -428,7 +426,10 @@ contract BalancerZAP {
 
     }
 
-    function addLiquidityTokenOnly(uint256 tokenAmount, address payable to) public payable {
+    /**
+     * @dev User needs to have approved this contract to transferFrom tokens
+     */
+    function addLiquidityTokenOnly(uint256 tokenAmount, address to) public  {
         require(to != address(0), "Invalid address");
         require(tokenAmount > 0, "Insufficient token amount");
 
@@ -437,7 +438,7 @@ contract BalancerZAP {
 
     }
 
-    function _addLiquidity(uint256 tokenAmount, address payable to) internal {
+    function _addLiquidity(uint256 tokenAmount, address to) internal {
 
         //mint BPTs 
         uint256 bptTokens = IBPool(_balancerPool).joinswapExternAmountIn( _token, tokenAmount, 0);

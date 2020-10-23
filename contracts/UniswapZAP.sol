@@ -1,6 +1,36 @@
 pragma solidity ^0.6.12;
 
 
+//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//
+// LiquidityZAP - UniswapZAP
+//   Copyright (c) 2020 deepyr.com
+//
+// UniswapZAP takes ETH and converts to a Uniswap liquidity tokens. 
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  
+// If not, see <https://github.com/apguerrera/LiquidityZAP/>.
+//
+// The above copyright notice and this permission notice shall be included 
+// in all copies or substantial portions of the Software.
+//
+// Authors:
+// * Adrian Guerrera / Deepyr Pty Ltd
+//
+// ---------------------------------------------------------------------
+// SPDX-License-Identifier: GPL-3.0-or-later                        
+// ---------------------------------------------------------------------
+
 import "../interfaces/IUniswapV2Pair.sol";
 import "../interfaces/IWETH9.sol";
 import "../interfaces/IERC20.sol";
@@ -25,11 +55,6 @@ contract UniswapZAP {
     }
 
     fallback() external payable {
-        if(msg.sender != address(_WETH)){
-             addLiquidityETHOnly(msg.sender);
-        }
-    }
-    receive() external payable {
         if(msg.sender != address(_WETH)){
              addLiquidityETHOnly(msg.sender);
         }

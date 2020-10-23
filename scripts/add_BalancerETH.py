@@ -8,14 +8,17 @@ TOKEN_WETH_PAIR = '0x1e0693f129d05e5857a642245185ee1fca6a5096'
 WETH_ADDRESS = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
 TENPOW18 = 10 ** 18
 
-# Uniswap 
-ZAP_ADDRESS = '0x2cbe8406380E784ea1a24aeEDFbf79788E2721AC'
+
+# Balancer1: 60% WETH 10% AXIA BAL COMP SNX
+ZAP_ADDRESS = '0x575E0188cFC64d13107d00150dF5e495DFEDa664'
+# Balancer2: 60% LINK 10% TRB ZAP AXIA BAND
+#ZAP_ADDRESS = '0x3Cb74Cc99AEf86d6e2715015b3b80C69a5858190'
 
 
 def get_zap():
-    uniswap_zap = UniswapZAP.at(ZAP_ADDRESS)
-    print("UniswapZAP contract deployed at: " + str(uniswap_zap))
-    return uniswap_zap
+    balancer_zap = BalancerZAP.at(ZAP_ADDRESS)
+    print("BalancerZAP contract deployed at: " + str(balancer_zap))
+    return balancer_zap
 
 
 def main():
@@ -28,4 +31,3 @@ def main():
     # Create Uniswap Liquidity Zap
     liquidity_zap = get_zap()
     liquidity_zap.addLiquidityETHOnly(accounts[0], {"from": accounts[0], "value": liquidity_to_add} )
-

@@ -1,6 +1,36 @@
 pragma solidity ^0.6.12;
 
 
+//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//
+// LiquidityZAP - BalancerZAP
+//   Copyright (c) 2020 deepyr.com
+//
+// BalancerZAP takes ETH and converts to a Balancer Pool Tokens (BTP). 
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  
+// If not, see <https://github.com/apguerrera/LiquidityZAP/>.
+//
+// The above copyright notice and this permission notice shall be included 
+// in all copies or substantial portions of the Software.
+//
+// Authors:
+// * Adrian Guerrera / Deepyr Pty Ltd
+//
+// ---------------------------------------------------------------------
+// SPDX-License-Identifier: GPL-3.0-or-later                        
+// ---------------------------------------------------------------------
+
 import "../interfaces/IWETH9.sol";
 import "../interfaces/IERC20.sol";
 import "../interfaces/IBPool.sol";
@@ -33,12 +63,10 @@ contract BalancerZAP {
              addLiquidityETHOnly(msg.sender);
         }
     }
-    receive() external payable {
-        if(msg.sender != address(_WETH)){
-             addLiquidityETHOnly(msg.sender);
-        }
-    }
 
+    /**
+     * @dev Converts ETH to Balancer Pool Tokens (BPT)
+     */
     function addLiquidityETHOnly(address payable to) public payable {
         require(to != address(0), "Invalid address");
 
@@ -58,7 +86,10 @@ contract BalancerZAP {
 
     }
 
-    function addLiquidityTokenOnly(uint256 tokenAmount, address payable to) public payable {
+    /**
+     * @dev User needs to have approved this contract to transferFrom tokens
+     */
+    function addLiquidityTokenOnly(uint256 tokenAmount, address to) public  {
         require(to != address(0), "Invalid address");
         require(tokenAmount > 0, "Insufficient token amount");
 
@@ -67,7 +98,7 @@ contract BalancerZAP {
 
     }
 
-    function _addLiquidity(uint256 tokenAmount, address payable to) internal {
+    function _addLiquidity(uint256 tokenAmount, address to) internal {
 
         //mint BPTs 
         uint256 bptTokens = IBPool(_balancerPool).joinswapExternAmountIn( _token, tokenAmount, 0);

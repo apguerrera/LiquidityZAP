@@ -256,11 +256,6 @@ contract UniswapZAP {
              addLiquidityETHOnly(msg.sender);
         }
     }
-    receive() external payable {
-        if(msg.sender != address(_WETH)){
-             addLiquidityETHOnly(msg.sender);
-        }
-    }
 
 
     function addLiquidityETHOnly(address payable to) public payable {
