@@ -26,7 +26,9 @@ pragma solidity ^0.6.12;
 //
 // Authors:
 // * Adrian Guerrera / Deepyr Pty Ltd
-//
+// 
+// Attribution: CORE / cvault.finance
+//  https://github.com/cVault-finance/CORE-periphery/blob/master/contracts/COREv1Router.sol
 // ---------------------------------------------------------------------
 // SPDX-License-Identifier: GPL-3.0-or-later                        
 // ---------------------------------------------------------------------
