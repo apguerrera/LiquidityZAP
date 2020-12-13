@@ -53,3 +53,15 @@ def deploy_weth_token():
 def get_weth_token():
     weth_token_address = web3.toChecksumAddress(CONTRACTS[network.show_active()]["weth_token"])
     return WETH9.at(weth_token_address)
+
+
+def deploy_uniswap_zap():
+    weth_token_address = CONTRACTS[network.show_active()]["weth_token"]
+    erc20_token_address = CONTRACTS[network.show_active()]["erc20_token"]
+    lp_token_address = CONTRACTS[network.show_active()]["lp_token"]
+
+    uniswap_zap = UniswapZAP.deploy({"from": accounts[0]})
+    uniswap_zap.initUniswapZAP(erc20_token_address, weth_token_address, lp_token_address, {"from": accounts[0]})
+    print("UniswapZAP contract deployed at: " + str(uniswap_zap))
+    return uniswap_zap
+

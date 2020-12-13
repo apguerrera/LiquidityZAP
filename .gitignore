@@ -6,3 +6,7 @@ reports/
 
 .tox
 keystore
+node_modules/
+package-lock.json
+package.json
+hardhat.config.js

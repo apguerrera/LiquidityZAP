@@ -68,9 +68,9 @@ contract UniswapZAP {
         addLiquidityETHOnly(msg.sender);
     }
 
-    function zapTokens(uint amount) external payable {
+    function zapTokens(uint amount) external  {
         require(amount > 0, "Token amount must be greater than 0");
-        addLiquidityTokensOnly(msg.sender, amount);
+        addLiquidityTokensOnly(msg.sender, msg.sender, amount);
     }
 
     function unzap() external returns  (uint amountToken, uint amountETH) {
@@ -90,7 +90,7 @@ contract UniswapZAP {
 
 
     /// @dev Add liquidity functions
-    function addLiquidityTokensOnly(address payable to, uint amount) public payable {
+    function addLiquidityTokensOnly(address from, address payable to, uint amount) public {
         require(to != address(0), "Invalid address");
 
         uint256 buyAmount = amount.div(2);
@@ -99,7 +99,7 @@ contract UniswapZAP {
         (uint256 reserveWeth, uint256 reserveTokens) = getPairReserves();
         uint256 outETH = UniswapV2Library.getAmountOut(buyAmount, reserveTokens, reserveWeth);
         
-        safeTransfer(_token, address(this), buyAmount);
+        safeTransferFrom(_token, from, address(this), amount);
         safeTransfer(_token, _tokenWETHPair, buyAmount);
 
         (address token0, address token1) = UniswapV2Library.sortTokens(address(_WETH), _token);
